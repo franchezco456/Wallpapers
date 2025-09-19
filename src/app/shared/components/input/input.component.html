@@ -1,3 +1,13 @@
-<p>
-  input works!
-</p>
+<ion-input 
+  [label]="label" 
+  label-placement="floating" 
+  fill="solid"
+  [placeholder]="placeholder"
+  [type]="type"
+  [value]="control.value"
+  (keyup)="doWrite($event)">
+
+@if(type === 'password'){
+  <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+}
+</ion-input>

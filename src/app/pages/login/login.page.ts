@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Auth } from 'src/app/core/services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginPage implements OnInit {
   public email  !: FormControl;
   public password !: FormControl;
   public loginForm !: FormGroup;
-  constructor() {
+  constructor(private readonly authSrv: Auth, private readonly roter: Router) {
     this.initForm();
    }
 
@@ -26,11 +28,16 @@ export class LoginPage implements OnInit {
       password: this.password,
     });
   }
-  public onSubmit(){
-    console.log(this.loginForm.value);
+  public async onSubmit(){
+    try {
+      await this.authSrv.loginWithEmailAndPassword(this.email.value, this.password.value);
+      this.roter.navigate(['/home']);
+    } catch (error) {
+      console.log((error as any).message);
+    }
   }
 
   public goToRegister(){
-    console.log("Go to register");
+    this.roter.navigate(['/register']);
   }
 }

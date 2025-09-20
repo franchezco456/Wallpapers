@@ -2,22 +2,25 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-      <div>
-      <form>
+      <div class = "register_form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <ion-grid>
           <ion-row>
             <ion-col>
-              <app-input label = "user" placeholder="Enter User" type="text" ></app-input>
+              <app-input label = "user" placeholder="Enter User" type="text" [control]="user"></app-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-input label = "password" placeholder="enter password" type="password"></app-input> 
+              <app-input label = "password" placeholder="enter password" type="password" [control]="password"></app-input> 
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-toggle></app-toggle>
+              <app-button fill="solid" label="Sign In" type="submit" [disabled]="loginForm.invalid" ></app-button>
+            </ion-col>
+            <ion-col>
+              <app-button fill="outline" label="Sign Up" (click)="goToRegister()"></app-button>
             </ion-col>
           </ion-row>
         </ion-grid>

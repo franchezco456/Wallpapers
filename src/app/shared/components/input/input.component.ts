@@ -18,7 +18,6 @@ export class InputComponent  implements OnInit {
   ngOnInit() {}
 
   public doWrite(event : any){
-    console.log(event.target.value);
     this.control.setValue(event.target.value);
   }
 }

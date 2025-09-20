@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   standalone: false,
 })
 export class LoginPage implements OnInit {
-  public user !: FormControl;
+  public email  !: FormControl;
   public password !: FormControl;
   public loginForm !: FormGroup;
   constructor() {
@@ -19,10 +19,10 @@ export class LoginPage implements OnInit {
   }
 
   private initForm(){
-    this.user = new FormControl('', [Validators.required, Validators.email]);
+    this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(8)]);
     this.loginForm = new FormGroup({
-      user: this.user,
+      user: this.email,
       password: this.password,
     });
   }

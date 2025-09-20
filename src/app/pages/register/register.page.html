@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <div class = "register_form">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <app-input label = "Name" placeholder="Enter Name" type="text" [control]="name"></app-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <app-input label = "Last Name" placeholder="Enter Last Name" type="text" [control]="lastName"></app-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <app-input label = "Email" placeholder="Enter Email" type="text" [control]="email"></app-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <app-input label = "Password" placeholder="Enter Password" type="password" [control]="password"></app-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <app-button fill="solid" label="Register" type="submit" [disabled]="registerForm.invalid" ></app-button>
+              </ion-col>
+              <ion-col>
+                <app-button fill="outline" label="Go to Login" (click)="goToLogin()"></app-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

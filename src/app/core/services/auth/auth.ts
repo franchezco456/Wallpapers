@@ -15,6 +15,7 @@ export class Auth {
       console.log(response);
     } catch (error) {
       console.log((error as any).message);
+      throw error;
     }
   }
 
@@ -24,6 +25,7 @@ export class Auth {
       console.log(response);
     } catch (error) {
       console.log((error as any).message);
+      throw error;
     }
   }
 }

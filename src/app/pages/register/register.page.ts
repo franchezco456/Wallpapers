@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
+import { Toast } from 'src/app/core/services/toast/toast';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterPage implements OnInit {
   public email !: FormControl;
   public password !: FormControl;
   public registerForm !: FormGroup;
-  constructor(private readonly authSrv: Auth, private readonly roter: Router) { 
+  constructor(private readonly authSrv: Auth, private readonly roter: Router, private toast: Toast) { 
     this.initForm();
   }
 
@@ -39,12 +40,19 @@ export class RegisterPage implements OnInit {
     try {
       await this.authSrv.register(this.email.value, this.password.value);
       this.roter.navigate(['/login']);
+      this.toast.show("Register successful", "long");
     } catch (error) {
+      this.toast.showError((this.extractTextInParentheses((error as any).message)) || "Registration failed");
       console.log((error as any).message);
     }
   }
   public goToLogin(){
     this.roter.navigate(['/login']);
+  }
+  
+  public extractTextInParentheses(text: string): string | null {
+  const match = text.match(/\((.*?)\)/);
+  return match ? match[1] : null;
   }
 
 }

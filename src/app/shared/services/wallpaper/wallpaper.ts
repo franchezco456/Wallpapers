@@ -26,4 +26,13 @@ export class Wallpaper {
     console.log('TAG_IMAGE', JSON.stringify(image));
     console.log(url);
   }
+
+  public async loadWallpapers() {
+    const currentUid = this.userSrv.getCurrentuid();
+    const urls = await this.uploaderSrv.loadAllImagesFromFolder(
+      'Wallpapers',
+      'images/' + currentUid
+    );
+    return urls;
+  }
 }

@@ -4,4 +4,14 @@
     (addClick)="addImage()"
     (userClick)="goUpdater()">
   </app-fbutton>
+
+  <ng-container *ngIf="urls.length > 0">
+    <ion-grid>
+      <ion-row *ngFor="let row of urls | slice:0:urls.length; let i = index">
+        <ion-col size="6" *ngFor="let url of urls.slice(i*2, i*2+2)">
+          <app-card [imgSrc]="url"></app-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
 </ion-content>

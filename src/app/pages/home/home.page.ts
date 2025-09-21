@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
 import { UserService } from 'src/app/shared/services/user-service';
@@ -10,21 +10,33 @@ import { Wallpaper } from 'src/app/shared/services/wallpaper/wallpaper';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  public urls: string[] = [];
+  constructor(
+    private readonly userSrv: UserService,
+    private readonly router: Router,
+    private readonly wallpaperSrv: Wallpaper
+  ) {}
 
-  constructor(private readonly userSrv: UserService, private readonly router : Router, private readonly wallpaperSrv:Wallpaper) {}
-
+  async ngOnInit() {
+    await this.loadWallpapers();
+  }
+  
   async logOut() {
     await this.userSrv.logOutUser();
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   async addImage() {
     await this.wallpaperSrv.uploadWallpaper();
+    await this.loadWallpapers();
+  }
+
+  async loadWallpapers() {
+    this.urls = await this.wallpaperSrv.loadWallpapers();
   }
 
   goUpdater() {
-    this.router.navigate(['/updater'])
+    this.router.navigate(['/updater']);
   }
-
 }

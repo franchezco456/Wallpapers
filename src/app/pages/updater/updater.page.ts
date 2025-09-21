@@ -44,11 +44,4 @@ export class UpdaterPage implements OnInit {
   public goToHome(){
     this.router.navigate(['/home']);
   }
-
-  public extractTextInParentheses(text: string): string | null {
-  const match = text.match(/\((.*?)\)/);
-  return match ? match[1] : null;
-  }
-
-
 }

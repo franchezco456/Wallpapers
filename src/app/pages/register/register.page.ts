@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
+import { Query } from 'src/app/core/services/query/query';
 import { Toast } from 'src/app/core/services/toast/toast';
 
 @Component({
@@ -16,7 +17,7 @@ export class RegisterPage implements OnInit {
   public email !: FormControl;
   public password !: FormControl;
   public registerForm !: FormGroup;
-  constructor(private readonly authSrv: Auth, private readonly roter: Router, private toast: Toast) { 
+  constructor(private readonly authSrv: Auth, private readonly roter: Router, private toast: Toast, private readonly querySrv: Query) { 
     this.initForm();
   }
 
@@ -38,7 +39,11 @@ export class RegisterPage implements OnInit {
 
   public async onSubmit(){
     try {
-      await this.authSrv.register(this.email.value, this.password.value);
+      const uid = await this.authSrv.register(this.email.value, this.password.value);
+      await this.querySrv.create('users', {
+        name: this.name.value, 
+        lastName: this.lastName.value, 
+        email: this.email.value}, uid);
       this.roter.navigate(['/login']);
       this.toast.show("Register successful", "long");
     } catch (error) {

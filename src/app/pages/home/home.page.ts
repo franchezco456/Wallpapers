@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Auth } from 'src/app/core/services/auth/auth';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private readonly authSrv: Auth, private readonly router : Router) {}
+
+  async SeeYou(){
+  await this.authSrv.logOut()
+  this.router.navigate(['/login'])
+} 
 
 }

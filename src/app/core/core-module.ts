@@ -5,7 +5,8 @@ import { environment } from 'src/environments/environment.prod';
 import {provideAuth, getAuth} from '@angular/fire/auth'
 import { Auth } from './services/auth/auth';
 import { Toast } from './services/toast/toast';
-
+import{provideFirestore, getFirestore} from '@angular/fire/firestore'
+import { Query } from './services/query/query';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { Toast } from './services/toast/toast';
   providers: [
     provideFirebaseApp(()=>initializeApp(environment.Firebase_app)),
     provideAuth(()=>getAuth()),
-    Auth, Toast
+    provideFirestore(()=>getFirestore()),
+    Auth, Toast, Query
   ]
 })
 export class CoreModule {}

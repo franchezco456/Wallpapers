@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import {Auth as AuthFire, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth';
+import {Auth as AuthFire, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
   constructor(private readonly afb: AuthFire){}
 
-  async register( email: string, password: string){
+  async register( email: string, password: string): Promise<string>{
     try {
       const response = await createUserWithEmailAndPassword(
         this.afb, 
         email, 
         password);
       console.log(response);
+      return response.user.uid;
     } catch (error) {
       console.log((error as any).message);
       throw error;
@@ -27,5 +28,9 @@ export class Auth {
       console.log((error as any).message);
       throw error;
     }
+  }
+
+  async logOut(){
+  await signOut(this.afb)
   }
 }

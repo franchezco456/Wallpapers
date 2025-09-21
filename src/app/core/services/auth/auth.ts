@@ -30,6 +30,10 @@ export class Auth {
     }
   }
 
+  getCurrentUserUid(): string | null {
+  return this.afb.currentUser ? this.afb.currentUser.uid : null;
+}
+
   async logOut(){
   await signOut(this.afb)
   }

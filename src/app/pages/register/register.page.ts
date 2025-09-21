@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
 import { Query } from 'src/app/core/services/query/query';
 import { Toast } from 'src/app/core/services/toast/toast';
+import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterPage implements OnInit {
   public email !: FormControl;
   public password !: FormControl;
   public registerForm !: FormGroup;
-  constructor(private readonly authSrv: Auth, private readonly roter: Router, private toast: Toast, private readonly querySrv: Query) { 
+  constructor(private readonly router: Router, private toast: Toast, private readonly userSrv : UserService) { 
     this.initForm();
   }
 
@@ -39,25 +40,14 @@ export class RegisterPage implements OnInit {
 
   public async onSubmit(){
     try {
-      const uid = await this.authSrv.register(this.email.value, this.password.value);
-      await this.querySrv.create('users', {
-        name: this.name.value, 
-        lastName: this.lastName.value, 
-        email: this.email.value}, uid);
-      this.roter.navigate(['/login']);
+      await this.userSrv.RegisterUser(this.name.value, this.lastName.value, this.email.value, this.password.value);
+      this.router.navigate(['/login']);
       this.toast.show("Register successful", "long");
     } catch (error) {
-      this.toast.showError((this.extractTextInParentheses((error as any).message)) || "Registration failed");
-      console.log((error as any).message);
+      this.toast.showError(((error as any).message) || "Registration failed");
     }
   }
   public goToLogin(){
-    this.roter.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
-  
-  public extractTextInParentheses(text: string): string | null {
-  const match = text.match(/\((.*?)\)/);
-  return match ? match[1] : null;
-  }
-
 }

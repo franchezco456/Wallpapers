@@ -2,8 +2,8 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-      <div class = "register_form">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <app-card>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -24,8 +24,8 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </form>
-      </div>
+        </form>
+      </app-card>
     </ion-col>
   </ion-row>
 </ion-grid>

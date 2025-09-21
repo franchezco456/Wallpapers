@@ -7,14 +7,15 @@ import { InputComponent } from './components/input/input.component';
 import { LinkComponent } from './components/link/link.component';
 import { ToggleComponent } from './components/toggle/toggle.component';
 import { IonicModule } from '@ionic/angular';
+import { ImageComponent } from './components/image/image.component';
 
 
 
 @NgModule({
-  declarations: [ButtonComponent,CardComponent,FbuttonComponent, InputComponent, LinkComponent, ToggleComponent],
+  declarations: [ButtonComponent,CardComponent,FbuttonComponent, InputComponent, LinkComponent, ToggleComponent, ImageComponent],
   imports: [
     CommonModule, IonicModule
   ],
-  exports: [ButtonComponent,CardComponent,FbuttonComponent, InputComponent, LinkComponent, ToggleComponent]
+  exports: [ButtonComponent,CardComponent,FbuttonComponent, InputComponent, LinkComponent, ToggleComponent, ImageComponent]
 })
 export class SharedModule { }

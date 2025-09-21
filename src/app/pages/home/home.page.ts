@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
+import { Loading } from 'src/app/core/services/loading/loading';
+import { Toast } from 'src/app/core/services/toast/toast';
 import { UserService } from 'src/app/shared/services/user-service';
 import { Wallpaper } from 'src/app/shared/services/wallpaper/wallpaper';
 
@@ -15,21 +17,40 @@ export class HomePage implements OnInit {
   constructor(
     private readonly userSrv: UserService,
     private readonly router: Router,
-    private readonly wallpaperSrv: Wallpaper
+    private readonly wallpaperSrv: Wallpaper,
+    private readonly loadingSrv: Loading,
+    private readonly toastSrv: Toast
   ) {}
 
   async ngOnInit() {
-    await this.loadWallpapers();
+    try {
+      await this.loadingSrv.showLoading();
+      await this.loadWallpapers();
+    } catch (error) {
+      await this.toastSrv.show("Error loading wallpapers");
+    }finally{
+      await this.loadingSrv.dismissLoading();
+    }
+    
+  
   }
   
   async logOut() {
     await this.userSrv.logOutUser();
+    this.urls = [];
     this.router.navigate(['/login']);
   }
 
   async addImage() {
-    await this.wallpaperSrv.uploadWallpaper();
-    await this.loadWallpapers();
+    try {
+      await this.loadingSrv.showLoading();
+      const newUrl = await this.wallpaperSrv.uploadWallpaper();
+      this.urls.push(newUrl);
+    } catch (error) {
+      await this.toastSrv.show("Error uploading wallpapers");
+    }finally{
+      await this.loadingSrv.dismissLoading();
+    }
   }
 
   async loadWallpapers() {

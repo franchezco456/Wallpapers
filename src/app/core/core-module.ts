@@ -10,6 +10,7 @@ import { Query } from './services/query/query';
 import { File } from './services/file/file';
 import { Capacitor } from '@capacitor/core';
 import { Uploader } from './services/uploader/uploader';
+import { Loading } from './services/loading/loading';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { Uploader } from './services/uploader/uploader';
     provideFirebaseApp(()=>initializeApp(environment.Firebase_app)),
     provideAuth(()=>getAuth()),
     provideFirestore(()=>getFirestore()),
-    Auth, Toast, Query, File, Uploader
+    Auth, Toast, Query, File, Uploader, Loading
   ]
 })
 export class CoreModule implements OnInit {

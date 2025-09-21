@@ -24,7 +24,7 @@ export class Wallpaper {
       image.mimeType
     );
     console.log('TAG_IMAGE', JSON.stringify(image));
-    console.log(url);
+    return url;
   }
 
   public async loadWallpapers() {

@@ -1,3 +1,7 @@
 <ion-content [fullscreen]="true">
-  <app-button fill="outline" label="Log Out" (click)="SeeYou()"></app-button>
+  <app-fbutton
+    (logOutClick)="logOut()"
+    (addClick)="addImage()"
+    (userClick)="goUpdater()">
+  </app-fbutton>
 </ion-content>

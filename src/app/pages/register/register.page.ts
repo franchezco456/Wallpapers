@@ -42,7 +42,7 @@ export class RegisterPage implements OnInit {
     try {
       await this.userSrv.RegisterUser(this.name.value, this.lastName.value, this.email.value, this.password.value);
       this.router.navigate(['/login']);
-      this.toast.show("Register successful", "long");
+      this.toast.show("Register successful", "short");
     } catch (error) {
       this.toast.showError(((error as any).message) || "Registration failed");
     }

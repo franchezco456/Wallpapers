@@ -10,7 +10,7 @@ export class UserService {
   
   public async UpdateUser(name: string, lastName: string){
     try{
-      const uuid = this.authSrv.getCurrentUserUid();
+      const uuid = this.getCurrentuid();
       await this.querySrv.update('users', uuid!, {
       name: name,
       lastName: lastName
@@ -20,6 +20,11 @@ export class UserService {
       const errorMsg = this.extractTextInParentheses((error as any).message) || "Error desconocido";
       throw new Error(errorMsg);
     }
+  }
+
+  public getCurrentuid(){
+    const uuid = this.authSrv.getCurrentUserUid();
+    return uuid;
   }
   
 
@@ -40,6 +45,15 @@ export class UserService {
   public async LoginUser(email: string, password: string){
     try {
       await this.authSrv.loginWithEmailAndPassword(email, password);
+    } catch (error) {
+      const errorMsg = this.extractTextInParentheses((error as any).message) || "Error desconocido";
+      throw new Error(errorMsg);
+    }
+  }
+
+  public async logOutUser() {
+    try {
+      await this.authSrv.logOut()
     } catch (error) {
       const errorMsg = this.extractTextInParentheses((error as any).message) || "Error desconocido";
       throw new Error(errorMsg);

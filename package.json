@@ -32,6 +32,7 @@
     "@capawesome/capacitor-file-picker": "^7.2.0",
     "@ionic/angular": "^8.0.0",
     "@ionic/pwa-elements": "^3.3.0",
+    "@supabase/supabase-js": "^2.57.4",
     "firebase": "^12.3.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",

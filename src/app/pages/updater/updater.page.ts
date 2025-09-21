@@ -35,7 +35,7 @@ export class UpdaterPage implements OnInit {
     try{
       await this.UserSrv.UpdateUser(this.name.value, this.lastName.value);
       this.router.navigate(['/home']);
-      this.toast.show("Updater successful", "long");
+      this.toast.show("Updater successful", "short");
     }catch(error){
       this.toast.showError(((error as any).message) || "Update failed");
     } 

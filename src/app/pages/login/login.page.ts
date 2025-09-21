@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     try {
       await this.userSrv.LoginUser(this.email.value, this.password.value);
       this.roter.navigate(['/home']);
-      this.toast.show("Login successful", "long");
+      this.toast.show("Login successful", "short");
     } catch (error) {
       this.toast.showError((((error as any).message)) || "Login failed");
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
 import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
 import { UserService } from 'src/app/shared/services/user-service';
@@ -16,7 +17,7 @@ export class UpdaterPage implements OnInit {
   public lastName !: FormControl;
   public updaterForm !: FormGroup;
 
-  constructor(private readonly UserSrv: UserService , private readonly toast: Toast, private readonly router: Router) {
+  constructor(private readonly UserSrv: UserService , private readonly toast: Toast, private readonly router: Router, private readonly preferencesSrv: Preferences) {
     this.initForm();
    }
 
@@ -47,6 +48,10 @@ export class UpdaterPage implements OnInit {
   }
 
   public async go(){
+    await this.preferencesSrv.setPreferences(
+      'data',
+      JSON.stringify({name: "John", lastName: "Doe"})
+    );
     const response = await myCustomPlugin.execute();
     console.log("RESPONSE PLUGIN" + JSON.stringify(response));
   }

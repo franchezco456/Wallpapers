@@ -11,6 +11,7 @@ import { File } from './services/file/file';
 import { Capacitor } from '@capacitor/core';
 import { Uploader } from './services/uploader/uploader';
 import { Loading } from './services/loading/loading';
+import { Preferences } from './services/preferences/preferences';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { Loading } from './services/loading/loading';
     provideFirebaseApp(()=>initializeApp(environment.Firebase_app)),
     provideAuth(()=>getAuth()),
     provideFirestore(()=>getFirestore()),
-    Auth, Toast, Query, File, Uploader, Loading
+    Auth, Toast, Query, File, Uploader, Loading, Preferences
   ]
 })
 export class CoreModule implements OnInit {

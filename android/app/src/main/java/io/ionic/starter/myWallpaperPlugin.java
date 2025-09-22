@@ -16,11 +16,10 @@ import org.json.JSONObject;
 public class myWallpaperPlugin extends Plugin {
   public static final String CAPACITOR_STORAGE = "CapacitorStorage";
 
-  @PluginMethod()
-  public void execute (PluginCall call){
-    System.out.println("MY LOG PLUGIN" + "HELLO WORLD");
-    WallpaperSuport Ws = new WallpaperSuport();
-    Ws.lol();
+  @PluginMethod
+  public void setHomeScreenWallpaper(PluginCall call) throws JSONException {
+    WallpaperSuport Ws = new WallpaperSuport(getContext());
+    String response = "";
 
     SharedPreferences sp = getContext().getSharedPreferences(CAPACITOR_STORAGE, Context.MODE_PRIVATE);
 
@@ -34,22 +33,48 @@ public class myWallpaperPlugin extends Plugin {
     JSONObject object = null;
     try {
       object = new JSONObject(data);
-      if(!object.has("name") || !object.has("lastName")){
-        call.reject("faltaron algunas propiedades");
+      if(!object.has("url")){
+        call.reject("no se cargo la url");
         return;
       }
 
-      System.out.println("nombre recibido de ionic " + object.get("name"));
-      System.out.println("apellido recibido de ionic "  + object.get("lastName"));
+      response = Ws.homeScreen(object.getString("url"));
+      JSObject resp = new JSObject();
+      resp.put("message", response);
+      call.resolve(resp);
     } catch (JSONException e) {
       throw new RuntimeException(e);
     }
+  }
 
+  @PluginMethod
+  public void setLockScreenWallpaper(PluginCall call) throws JSONException {
+    WallpaperSuport Ws = new WallpaperSuport(getContext());
+    String response = "";
 
+    SharedPreferences sp = getContext().getSharedPreferences(CAPACITOR_STORAGE, Context.MODE_PRIVATE);
 
+    String data = sp.getString("data", "none");
 
-    JSObject resp = new JSObject();
-    resp.put("message", "resolve from plugin wallpaper java");
-    call.resolve(resp);
+    if(data.equals("none")){
+      call.reject("no se pudo leer data de shared preferences");
+      return;
+    }
+
+    JSONObject object = null;
+    try {
+      object = new JSONObject(data);
+      if(!object.has("url")){
+        call.reject("no se cargo la url");
+        return;
+      }
+
+      response = Ws.lockScreen(object.getString("url"));
+      JSObject resp = new JSObject();
+      resp.put("message", response);
+      call.resolve(resp);
+    } catch (JSONException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

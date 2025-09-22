@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-image',
@@ -8,8 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageComponent  implements OnInit {
   @Input() imgSrc: string = '';
+  @Output() onImageClick = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {}
+
+  public imageWasClicked(): void {
+    this.onImageClick.emit(this.imgSrc);
+  }
 
 }

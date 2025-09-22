@@ -3,7 +3,7 @@
     <ion-grid>
       <ion-row *ngFor="let row of urls | slice:0:urls.length; let i = index">
         <ion-col size="6" *ngFor="let url of urls.slice(i*2, i*2+2)">
-          <app-image [imgSrc]="url"></app-image>
+          <app-image [imgSrc]="url" (onImageClick)="manejarClickDeImagen($event)"></app-image>
         </ion-col>
       </ion-row>
     </ion-grid>

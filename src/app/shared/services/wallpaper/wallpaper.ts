@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { File } from 'src/app/core/services/file/file';
 import { Uploader } from 'src/app/core/services/uploader/uploader';
 import { UserService } from '../user-service';
+import { Preferences } from 'src/app/core/services/preferences/preferences';
+import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,8 @@ export class Wallpaper {
   constructor(
     private readonly fileSrv: File,
     private readonly uploaderSrv: Uploader,
-    private readonly userSrv: UserService
+    private readonly userSrv: UserService,
+    private readonly preferencesSrv : Preferences
   ) {}
 
   public async uploadWallpaper() {
@@ -34,5 +37,23 @@ export class Wallpaper {
       'images/' + currentUid
     );
     return urls;
+  }
+
+  public async homeScreen(imageUrl : string){
+    await this.preferencesSrv.setPreferences(
+      'data',
+      JSON.stringify({url: imageUrl})
+    );
+    const response = await myCustomPlugin.setHomeScreenWallpaper();
+    console.log("RESPONSE PLUGIN" + JSON.stringify(response));
+  }
+
+  public async lockScreen(imageUrl : string){
+    await this.preferencesSrv.setPreferences(
+      'data',
+      JSON.stringify({url: imageUrl})
+    );
+    const response = await myCustomPlugin.setLockScreenWallpaper();
+    console.log("RESPONSE PLUGIN" + JSON.stringify(response));
   }
 }

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/core/services/auth/auth';
 import { Loading } from 'src/app/core/services/loading/loading';
+import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
+import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
+import { ActionSheet } from 'src/app/shared/providers/ActionSheet/action-sheet';
 import { UserService } from 'src/app/shared/services/user-service';
 import { Wallpaper } from 'src/app/shared/services/wallpaper/wallpaper';
 
@@ -14,12 +17,14 @@ import { Wallpaper } from 'src/app/shared/services/wallpaper/wallpaper';
 })
 export class HomePage implements OnInit {
   public urls: string[] = [];
+  public imageUrlFromChild: string = "";
   constructor(
     private readonly userSrv: UserService,
     private readonly router: Router,
     private readonly wallpaperSrv: Wallpaper,
     private readonly loadingSrv: Loading,
-    private readonly toastSrv: Toast
+    private readonly toastSrv: Toast,
+    private readonly actionSheetPrv : ActionSheet
   ) {}
 
   async ngOnInit() {
@@ -41,6 +46,25 @@ export class HomePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  public async manejarClickDeImagen(imageUrl: string): Promise<void> {
+    this.imageUrlFromChild = imageUrl;
+    const action = await this.actionSheetPrv.presentActionSheet();
+    switch (action.data.action){
+      case 'home':
+        console.log("se selecciono home");
+        this.changeHomeScreen();
+        break;
+      case 'lock':
+        console.log("se selecciono lock");
+        this.changeLockScreen();
+        break;
+      default:
+        console.log("se cancelo la operacion");
+        break;
+
+    }
+  }
+
   async addImage() {
     try {
       await this.loadingSrv.showLoading();
@@ -59,5 +83,14 @@ export class HomePage implements OnInit {
 
   goUpdater() {
     this.router.navigate(['/updater']);
+  }
+
+  public async changeHomeScreen(){
+    this.wallpaperSrv.homeScreen(this.imageUrlFromChild);
+  }
+
+  public async changeLockScreen(){
+    this.wallpaperSrv.lockScreen(this.imageUrlFromChild);
+    
   }
 }

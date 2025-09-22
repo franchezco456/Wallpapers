@@ -1,7 +1,8 @@
 import {registerPlugin} from '@capacitor/core'
 
 interface ImycustomPlugin{
-    execute: () => Promise<{message:string}>
+    setHomeScreenWallpaper: () => Promise<{message:string}>
+    setLockScreenWallpaper: () => Promise<{message:string}>
 }
 
 const myCustomPlugin = registerPlugin<ImycustomPlugin>('myWallpaperPlugin');

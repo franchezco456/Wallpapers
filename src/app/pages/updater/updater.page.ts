@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
-import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -47,12 +46,4 @@ export class UpdaterPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  public async go(){
-    await this.preferencesSrv.setPreferences(
-      'data',
-      JSON.stringify({name: "John", lastName: "Doe"})
-    );
-    const response = await myCustomPlugin.execute();
-    console.log("RESPONSE PLUGIN" + JSON.stringify(response));
-  }
 }

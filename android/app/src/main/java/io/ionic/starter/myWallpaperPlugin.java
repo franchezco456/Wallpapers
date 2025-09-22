@@ -1,12 +1,21 @@
 package io.ionic.starter;
 
-public class myWallpaperPlugin {
+import com.getcapacitor.JSObject;
+import com.getcapacitor.Plugin;
+import com.getcapacitor.PluginCall;
+import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
 
-  public static void setLockScreenWallpaper(){
+@CapacitorPlugin(name = "myWallpaperPlugin")
+public class myWallpaperPlugin extends Plugin {
 
-  }
-
-  public static void setHomeScreenWallpaper(){
-
+  @PluginMethod()
+  public void execute (PluginCall call){
+    System.out.println("MY LOG PLUGIN" + "HELLO WORLD");
+    WallpaperSuport Ws = new WallpaperSuport();
+    Ws.lol();
+    JSObject resp = new JSObject();
+    resp.put("message", "resolve from plugin wallpaper java");
+    call.resolve(resp);
   }
 }

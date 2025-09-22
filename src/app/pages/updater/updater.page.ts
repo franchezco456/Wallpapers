@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Toast } from 'src/app/core/services/toast/toast';
+import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -43,5 +44,10 @@ export class UpdaterPage implements OnInit {
 
   public goToHome(){
     this.router.navigate(['/home']);
+  }
+
+  public async go(){
+    const response = await myCustomPlugin.execute();
+    console.log("RESPONSE PLUGIN" + JSON.stringify(response));
   }
 }

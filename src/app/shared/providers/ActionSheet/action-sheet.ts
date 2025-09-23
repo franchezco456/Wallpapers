@@ -7,22 +7,37 @@ import { ActionSheetController } from '@ionic/angular';
 export class ActionSheet {
   constructor(private actionSheetCtrl : ActionSheetController){}
    async presentActionSheet() {
+    const lang = localStorage.getItem('lang') || 'en';
+
+    let textHome: string;
+    let textLock: string;
+    let textCancel: string;
+
+    if (lang === 'es') {
+      textHome = 'Usar como fondo de inicio';
+      textLock = 'Usar como fondo de bloqueo';
+      textCancel = 'Cancelar';
+    } else {
+      textHome = 'Set as home screen';
+      textLock = 'Set as lock screen';
+      textCancel = 'Cancel';
+    }
     const actionSheet = await this.actionSheetCtrl.create({
       buttons: [
         {
-          text: 'Set as home screen',
+          text: textHome,
           data: {
             action: 'home',
           },
         },
         {
-          text: 'Set as lock screen',
+          text: textLock,
           data: {
             action: 'lock',
           },
         },
         {
-          text: 'Cancel',
+          text: textCancel,
           role: 'cancel',
           data: {
             action: 'cancel',

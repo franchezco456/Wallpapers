@@ -1,3 +1,11 @@
-<p>
-  toggle works!
-</p>
+<ion-radio-group 
+  [value]="selectedValue" 
+  (ionChange)="onValueChange($event)">
+  
+  <div *ngFor="let option of options">
+    <ion-item>
+      <ion-radio [value]="option.value" slot="start">{{ option.label }}</ion-radio>
+    </ion-item>
+  </div>
+
+</ion-radio-group>

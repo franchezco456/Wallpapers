@@ -17,16 +17,16 @@
         "registerbutton":"Sign up"
     },
 
-    "register":{
-        "inputnamelabel":"Name",
-        "inputnameplaceholder":"Enter name",
-        "inputlastnamelabel":"Apellido",
-        "inputlastnameplaceholder":"Enter apellido",
-        "inputemaillabel":"Email",
-        "inputemailplaceholder":"Enter email",
-        "inputpasswordlabel":"password",
-        "inputpasswordplaceholder":"Enter password",
-        "registerbutton":"Sign up",
-        "loginbutton":"Sign in"
-    }
+    "register": {
+    "inputnamelabel": "Name",
+    "inputnameplaceholder": "Enter name",
+    "inputlastnamelabel": "Last name",
+    "inputlastnameplaceholder": "Enter last name",
+    "inputemaillabel": "Email",
+    "inputemailplaceholder": "Enter email",
+    "inputpasswordlabel": "Password",
+    "inputpasswordplaceholder": "Enter password",
+    "registerbutton": "Sign up",
+    "loginbutton": "Sign in"
+  }
 }

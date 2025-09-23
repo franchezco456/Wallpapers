@@ -6,6 +6,7 @@ import { Loading } from 'src/app/core/services/loading/loading';
 import { Query } from 'src/app/core/services/query/query';
 import { Toast } from 'src/app/core/services/toast/toast';
 import { Translate } from 'src/app/core/services/trasnlate/translate';
+import { RadioOption } from 'src/app/shared/components/toggle/toggle.component';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -20,6 +21,13 @@ export class RegisterPage implements OnInit {
   public email!: FormControl;
   public password!: FormControl;
   public registerForm!: FormGroup;
+
+  languageOptions: RadioOption[] = [
+    { value: 'es', label: 'es' },
+    { value: 'en', label: 'en' },
+  ];
+
+  selectedLanguage : string = 'en'
   constructor(
     private readonly router: Router,
     private toast: Toast,
@@ -46,6 +54,12 @@ export class RegisterPage implements OnInit {
       email: this.email,
       password: this.password,
     });
+  }
+
+  handleLanguageChange(newLanguage: string | number) {
+    console.log('EL lenguaje seleccionada es:', newLanguage);
+    this.selectedLanguage = newLanguage as string;
+    this.translateSrv.setLanguage(this.selectedLanguage);
   }
 
   public async onSubmit() {

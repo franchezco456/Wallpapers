@@ -47,6 +47,16 @@
               </ion-row>
               <ion-row>
                 <ion-col>
+                  <app-toggle
+                    [options]="languageOptions"
+                    [selectedValue]="selectedLanguage"
+                    (selectionChange)="handleLanguageChange($event)"
+                  >
+                  </app-toggle>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
                   <app-button
                     fill="solid"
                     label="{{'register.registerbutton' | translate}}"

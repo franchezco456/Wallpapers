@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
 import { Translate } from 'src/app/core/services/trasnlate/translate';
+import { RadioOption } from 'src/app/shared/components/toggle/toggle.component';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -16,6 +17,13 @@ export class UpdaterPage implements OnInit {
   public name!: FormControl;
   public lastName!: FormControl;
   public updaterForm!: FormGroup;
+
+  languageOptions: RadioOption[] = [
+      { value: 'es', label: 'es' },
+      { value: 'en', label: 'en' },
+    ];
+  
+    selectedLanguage : string = 'en'
 
   constructor(
     private readonly UserSrv: UserService,
@@ -37,6 +45,12 @@ export class UpdaterPage implements OnInit {
     });
   }
 
+  handleLanguageChange(newLanguage: string | number) {
+    console.log('EL lenguaje seleccionada es:', newLanguage);
+    this.selectedLanguage = newLanguage as string;
+    this.translateSrv.setLanguage(this.selectedLanguage);
+  }
+
   public async onSubmit() {
     try {
       await this.UserSrv.UpdateUser(this.name.value, this.lastName.value);
@@ -49,6 +63,5 @@ export class UpdaterPage implements OnInit {
 
   public goToHome() {
     this.router.navigate(['/home']);
-    this.translateSrv.setLanguage('es');
   }
 }

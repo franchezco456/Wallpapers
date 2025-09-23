@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Toast } from 'src/app/core/services/toast/toast';
 import { Translate } from 'src/app/core/services/trasnlate/translate';
+import { RadioOption } from 'src/app/shared/components/toggle/toggle.component';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -15,11 +16,19 @@ export class LoginPage implements OnInit {
   public email!: FormControl;
   public password!: FormControl;
   public loginForm!: FormGroup;
+
+  languageOptions: RadioOption[] = [
+      { value: 'es', label: 'es' },
+      { value: 'en', label: 'en' },
+    ];
+  
+    selectedLanguage : string = 'en'
+
   constructor(
     private readonly userSrv: UserService,
     private readonly roter: Router,
     private toast: Toast,
-    private translatesrv : Translate
+    private translateSrv : Translate
   ) {
     this.initForm();
   }
@@ -37,6 +46,14 @@ export class LoginPage implements OnInit {
       password: this.password,
     });
   }
+
+  handleLanguageChange(newLanguage: string | number) {
+    console.log('EL lenguaje seleccionada es:', newLanguage);
+    this.selectedLanguage = newLanguage as string;
+    this.translateSrv.setLanguage(this.selectedLanguage);
+  }
+
+
   public async onSubmit() {
     try {
       await this.userSrv.LoginUser(this.email.value, this.password.value);

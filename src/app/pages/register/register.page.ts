@@ -5,6 +5,7 @@ import { Auth } from 'src/app/core/services/auth/auth';
 import { Loading } from 'src/app/core/services/loading/loading';
 import { Query } from 'src/app/core/services/query/query';
 import { Toast } from 'src/app/core/services/toast/toast';
+import { Translate } from 'src/app/core/services/trasnlate/translate';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -23,7 +24,8 @@ export class RegisterPage implements OnInit {
     private readonly router: Router,
     private toast: Toast,
     private readonly userSrv: UserService,
-    private readonly loadingSrv: Loading
+    private readonly loadingSrv: Loading,
+    private readonly translateSrv: Translate
   ) {
     this.initForm();
   }

@@ -6,5 +6,27 @@
         "inputlastnameplaceholder":"Introduce tu apellido",
         "updatebutton":"Actualizar",
         "returnbutton":"Volver"
+    },
+
+    "login":{
+        "inputemaillabel":"Correo electrónico",
+        "inputemailplaceholder":"Introduce tu correo electrónico",
+        "inputpasswordlabel":"Contraseña",
+        "inputpasswordplaceholder":"Introduce tu contraseña",
+        "loginbutton":"Iniciar sesión",
+        "registerbutton":"Registrarse"
+    },
+
+    "register":{
+        "inputnamelabel":"Nombre",
+        "inputnameplaceholder":"Introduce tu nombre",
+        "inputlastnamelabel":"Apellido",
+        "inputlastnameplaceholder":"Introduce tu apellido",
+        "inputemaillabel":"Correo electrónico",
+        "inputemailplaceholder":"Introduce tu correo electrónico",
+        "inputpasswordlabel":"Contraseña",
+        "inputpasswordplaceholder":"Introduce tu contraseña",
+        "registerbutton":"Registrarse",
+        "loginbutton":"Iniciar sesión"
     }
 }

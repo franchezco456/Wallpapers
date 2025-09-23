@@ -1,42 +1,71 @@
 <ion-content [fullscreen]="true">
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <app-card>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <app-input label = "Name" placeholder="Enter Name" type="text" [control]="name"></app-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <app-input label = "Last Name" placeholder="Enter Last Name" type="text" [control]="lastName"></app-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <app-input label = "Email" placeholder="Enter Email" type="text" [control]="email"></app-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <app-input label = "Password" placeholder="Enter Password" type="password" [control]="password"></app-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <app-button fill="solid" label="Register" type="submit" [disabled]="registerForm.invalid" ></app-button>
-              </ion-col>
-              <ion-col>
-                <app-button fill="outline" label="Go to Login" (click)="goToLogin()"></app-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </form>
-      </app-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-card>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <app-input
+                    label="{{'register.inputnamelabel' | translate}}"
+                    placeholder="{{'register.inputnameplaceholder' | translate}}"
+                    type="text"
+                    [control]="name"
+                  ></app-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <app-input
+                    label="{{'register.inputlastnamelabel' | translate}}"
+                    placeholder="{{'register.inputlastnameplaceholder' | translate}}"
+                    type="text"
+                    [control]="lastName"
+                  ></app-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <app-input
+                    label="{{'register.inputemaillabel' | translate}}"
+                    placeholder="{{'register.inputemailplaceholder' | translate}}"
+                    type="text"
+                    [control]="email"
+                  ></app-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <app-input
+                    label="{{'register.inputpasswordlabel' | translate}}"
+                    placeholder="{{'register.inputpasswordplaceholder' | translate}}"
+                    type="password"
+                    [control]="password"
+                  ></app-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <app-button
+                    fill="solid"
+                    label="{{'register.registerbutton' | translate}}"
+                    type="submit"
+                    [disabled]="registerForm.invalid"
+                  ></app-button>
+                </ion-col>
+                <ion-col>
+                  <app-button
+                    fill="outline"
+                    label="{{'register.loginbutton' | translate}}"
+                    (click)="goToLogin()"
+                  ></app-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </app-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

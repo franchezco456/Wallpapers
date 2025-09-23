@@ -9,6 +9,8 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 import { RegisterPage } from './register.page';
 import { SharedModule } from 'src/app/shared/shared-module';
 import { CoreModule } from 'src/app/core/core-module';
+import { Translate } from 'src/app/core/services/trasnlate/translate';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -18,7 +20,8 @@ import { CoreModule } from 'src/app/core/core-module';
     RegisterPageRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    TranslateModule
 
   ],
   declarations: [RegisterPage]

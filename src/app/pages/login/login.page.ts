@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Toast } from 'src/app/core/services/toast/toast';
+import { Translate } from 'src/app/core/services/trasnlate/translate';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
   constructor(
     private readonly userSrv: UserService,
     private readonly roter: Router,
-    private toast: Toast
+    private toast: Toast,
+    private translatesrv : Translate
   ) {
     this.initForm();
   }

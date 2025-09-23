@@ -1,0 +1,32 @@
+{
+    "updater":{
+        "inputnamelabel":"Name",
+        "inputnameplaceholder":"Enter name",
+        "inputlastnamelabel":"LastName",
+        "inputlastnameplaceholder":"Enter LastName",
+        "updatebutton":"Update",
+        "returnbutton":"Return"
+    },
+
+    "login":{
+        "inputemaillabel":"Email",
+        "inputemailplaceholder":"Enter email",
+        "inputpasswordlabel":"Password",
+        "inputpasswordplaceholder":"Enter password",
+        "loginbutton":"Sign in",
+        "registerbutton":"Sign up"
+    },
+
+    "register":{
+        "inputnamelabel":"Name",
+        "inputnameplaceholder":"Enter name",
+        "inputlastnamelabel":"Apellido",
+        "inputlastnameplaceholder":"Enter apellido",
+        "inputemaillabel":"Email",
+        "inputemailplaceholder":"Enter email",
+        "inputpasswordlabel":"password",
+        "inputpasswordplaceholder":"Enter password",
+        "registerbutton":"Sign up",
+        "loginbutton":"Sign in"
+    }
+}

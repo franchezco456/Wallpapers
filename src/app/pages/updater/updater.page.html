@@ -8,8 +8,8 @@
               <ion-row>
                 <ion-col>
                   <app-input
-                    label="Name"
-                    placeholder="Enter Name"
+                    label="{{'updater.inputnamelabel' | translate}}"
+                    placeholder="{{'updater.inputnameplaceholder' | translate}}"
                     type="text"
                     [control]="name"
                   ></app-input>
@@ -18,8 +18,8 @@
               <ion-row>
                 <ion-col>
                   <app-input
-                    label="LastName"
-                    placeholder="Enter LastName"
+                    label="{{'updater.inputlastnamelabel' | translate}}"
+                    placeholder="{{'updater.inputlastnameplaceholder' | translate}}"
                     type="text"
                     [control]="lastName"
                   ></app-input>
@@ -29,7 +29,7 @@
                 <ion-col>
                   <app-button
                     fill="solid"
-                    label="Update"
+                    label="{{'updater.updatebutton' | translate}}"
                     type="submit"
                     [disabled]="false"
                   ></app-button>
@@ -37,7 +37,7 @@
                 <ion-col>
                   <app-button
                     fill="outline"
-                    label="Home"
+                    label="{{'updater.returnbutton' | translate}}" 
                     (click)="goToHome()"
                   ></app-button>
                 </ion-col>

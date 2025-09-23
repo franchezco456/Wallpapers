@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
+import { Translate } from 'src/app/core/services/trasnlate/translate';
 import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
@@ -12,38 +13,42 @@ import { UserService } from 'src/app/shared/services/user-service';
   standalone: false,
 })
 export class UpdaterPage implements OnInit {
-  public name !: FormControl;
-  public lastName !: FormControl;
-  public updaterForm !: FormGroup;
+  public name!: FormControl;
+  public lastName!: FormControl;
+  public updaterForm!: FormGroup;
 
-  constructor(private readonly UserSrv: UserService , private readonly toast: Toast, private readonly router: Router, private readonly preferencesSrv: Preferences) {
+  constructor(
+    private readonly UserSrv: UserService,
+    private readonly toast: Toast,
+    private readonly router: Router,
+    private readonly translateSrv: Translate
+  ) {
     this.initForm();
-   }
-
-  ngOnInit() {
   }
 
-  private initForm(){
+  ngOnInit() {}
+
+  private initForm() {
     this.name = new FormControl('', [Validators.required]);
     this.lastName = new FormControl('', [Validators.required]);
     this.updaterForm = new FormGroup({
       name: this.name,
-      lastName: this.lastName
+      lastName: this.lastName,
     });
   }
 
-  public async onSubmit(){
-    try{
+  public async onSubmit() {
+    try {
       await this.UserSrv.UpdateUser(this.name.value, this.lastName.value);
       this.router.navigate(['/home']);
-      this.toast.show("Updater successful", "short");
-    }catch(error){
-      this.toast.showError(((error as any).message) || "Update failed");
-    } 
+      this.toast.show('Updater successful', 'short');
+    } catch (error) {
+      this.toast.showError((error as any).message || 'Update failed');
+    }
   }
 
-  public goToHome(){
+  public goToHome() {
     this.router.navigate(['/home']);
+    this.translateSrv.setLanguage('es');
   }
-
 }

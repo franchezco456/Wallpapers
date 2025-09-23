@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from 'src/app/core/services/auth/auth';
 import { Loading } from 'src/app/core/services/loading/loading';
-import { Preferences } from 'src/app/core/services/preferences/preferences';
 import { Toast } from 'src/app/core/services/toast/toast';
-import myCustomPlugin from 'src/app/Plugins/myCustomPlugin';
 import { ActionSheet } from 'src/app/shared/providers/ActionSheet/action-sheet';
 import { UserService } from 'src/app/shared/services/user-service';
 import { Wallpaper } from 'src/app/shared/services/wallpaper/wallpaper';

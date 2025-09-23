@@ -9,6 +9,7 @@ import { UpdaterPageRoutingModule } from './updater-routing.module';
 import { UpdaterPage } from './updater.page';
 import { SharedModule } from 'src/app/shared/shared-module';
 import { CoreModule } from 'src/app/core/core-module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { CoreModule } from 'src/app/core/core-module';
     UpdaterPageRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    TranslateModule
   ],
   declarations: [UpdaterPage]
 })

@@ -1,0 +1,10 @@
+{
+    "updater":{
+        "inputnamelabel":"Nombre",
+        "inputnameplaceholder":"Introduce tu nombre",
+        "inputlastnamelabel":"Apellido",
+        "inputlastnameplaceholder":"Introduce tu apellido",
+        "updatebutton":"Actualizar",
+        "returnbutton":"Volver"
+    }
+}
